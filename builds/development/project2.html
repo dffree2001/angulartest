@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset = "UTF-8">
+	<title>Angular testing</title>
+<script src="lib/angular/angular.min.js"></script>
+<script src="js/controller.js"></script>
+<style>
+	input{
+		margin: 10px;
+		padding: 3px;
+	}
+	fieldset{
+		padding: 10px 0;
+	}
+	label{
+		padding: 0 10px;
+	}
+	#name_data{
+		color: red;
+	}
+</style>
+</head>
+<body>
+
+<div ng-controller="MyController">
+	<h1>{{author.name}}</h1>
+	<p>{{author.title + ', ' + author.company}}</p>
+</div>
+
+</body>
+</html>
