@@ -1,18 +1,18 @@
 //controllers.js
 "use strict";
 
-var artistControllers = angular.module('artistControllers', []);
+var artistControllers = angular.module('artistControllers', ['ngAnimate']);
 
-artistControllers.controller('ListController', ['$scope', '$http', function($scope, $http) {
-  $http.get('js/data.json').success(function(data) {
-    $scope.artists = data;
+artistControllers.controller('ListController', 
+	['$scope', 'GetData', function($scope, GetData){
+    $scope.artists = GetData;
     $scope.artistOrder = 'name';
-  });
 }]);
 
-artistControllers.controller('DetailsController', ['$scope', '$http','$routeParams',  function($scope, $http, $routeParams) {
-  $http.get('js/data.json').success(function(data) {
-    $scope.artists = data;
+artistControllers.controller('DetailsController', 
+	['$scope', 'GetData','$routeParams',  
+	function($scope, GetData, $routeParams) { 
+    $scope.artists = GetData;
     $scope.whichItem = $routeParams.itemId;
-  });
+ 
 }]);

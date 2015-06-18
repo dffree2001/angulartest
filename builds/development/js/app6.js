@@ -2,8 +2,9 @@
  
 var myApp = angular.module('myApp', [
   'ngRoute',
-  'artistControllers'
-]);
+  'artistControllers',
+  'firebase'
+]).constant('FIREBASE_URL', 'https://artists.firebaseio.com');
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
@@ -19,3 +20,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
     redirectTo: '/list'
   });
 }]);
+
+myApp.factory('GetData', function($firebaseArray,
+   FIREBASE_URL) {
+    var ref = new Firebase(FIREBASE_URL);
+  return $firebaseArray(ref);
+}); //CountMeetings
