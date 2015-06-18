@@ -1,26 +1,35 @@
-<section class="search">
-<h1>Artist Directory</h1>
-<label>search: </label>
-<input type="text" ng-model="query" placeholder="search for artists" autofocus>
-<!--select>
-	<option value="name">Name</option>
-	<option value="reknown">Reknown</option>
-</select>
-<input type="radio" value="ascending" checked>Ascending
-<input type="radio" value="decending"-->
-</div>
+<section class="artistpage">
+  <div class="search">
+    <h1>Artist Directory</h1>
+    <label>search: </label>
+    <input ng-model="query" placeholder="Search for artists" autofocus>
 
-<div ng-controller="MyController" class="main">
-	<ul class="artistlist">
-		<li class="artist cf" ng-repeat="item in artists | filter: query">
-			<img ng-src="images/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}">
-			<div class="info">
-				<h2>{{item.name}}</h2>
-				<h3>{{item.reknown}}</h3>
-			</div>
-		</li>
-	</ul>
+    <label class="formgroup" ng-show="query">by:
+      <select ng-model="artistOrder">
+        <option value="name">Name</option>
+        <option value="reknown">Reknown</option>
+      </select>
+    </label>
 
-	
-</div>
-<section>
+    <label class="formgroup" ng-show="query">
+      <input type="radio" ng-model="direction" name="direction" checked>
+      ascending
+     </label>
+    <label class="formgroup" ng-show="query">
+      <input type="radio" ng-model="direction" name="direction" value="reverse">
+      descending
+    </label>
+   
+  </div>
+  <ul class="artistlist">
+    <li class="artist cf" ng-repeat="item in artists | filter: {name:query} | orderBy: artistOrder:direction">
+	    <a href="#/details/{{artists.indexOf(item)}}">
+	      <img ng-src="images/{{item.shortname}}_tn.jpg" alt="Photo of {{item.name}}">
+	      <div class="info">
+	        <h2>{{item.name}}</h2>
+	        <h3>{{item.reknown}}</h3>
+	      </div>
+	  	</a>
+    </li>
+  </ul>  
+</section>
